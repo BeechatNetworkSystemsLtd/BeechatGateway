@@ -36,7 +36,7 @@ Features
 
 Connection Issues
 -------------------
-Some users might be encountering problems with connecting to other users and getting a ```443 connection refused``` error message in the Terminal. This is due to port forwarding and firewalls. Please open the port you are using via your router and your PC's firewall settings. Alternatively, some VPNs allow you to forward your port regardless of the router, directly through the VPN. This is a good solution to at the same time protect your IP from others and open your port no matter which router you are connected to.
+Some users might be encountering problems with connecting to other users and getting a ```111 connection refused``` error message in the Terminal. This is due to port forwarding and firewalls. Please open the port you are using via your router and your PC's firewall settings. Alternatively, some VPNs allow you to forward your port regardless of the router, directly through the VPN. This is a good solution to at the same time protect your IP from others and open your port no matter which router you are connected to.
 
 
 Building the software
