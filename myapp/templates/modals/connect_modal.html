@@ -1,0 +1,44 @@
+<!-- Modal -->
+<div class="modal fade" id="connectModal" tabindex="-1" role="dialog" aria-labelledby="connectModalLabel" aria-hidden="true">
+	<div class="modal-dialog-centered modal-dialog" role="document" style="margin-left: -20%;">
+	  <div class="modal-content">
+
+		
+		<div class="modal-body text-center">
+            <button type="button" class="close display-inline-block" data-dismiss="modal" aria-label="Close"
+            style="transform: scale(2,2);">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            <div class="connect_box">
+                <span class="font-weight-bold" id="exampleModalLongTitle" style="font-size: xx-large;">Connect to Client</span>
+
+                <input type="text" id="host" class="profile_name mt-2" placeholder="111.555.888.04">
+
+                <input type="text" id="port" class="profile_name mt-2" placeholder="80">
+
+                <input type="text" id="uname" class="profile_name mt-3" placeholder="Enter client name(optional)" name="username">
+            
+                <button id="connectBtn" class="btn btn-lg mt-2 font-weight-bold" style="background-color: #dacb58; color:white;">
+                Connect Now</button>
+            </div>
+		</div>
+
+		
+	  </div>
+	</div>
+  </div>
+
+<style>
+
+.connect_box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+</style>
+
+<script src="{{ url_for('static', filename='js/new_layout/connect_modal.js') }}"></script>
+

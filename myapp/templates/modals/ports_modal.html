@@ -1,0 +1,31 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog-centered modal-dialog" role="document" style="margin-left: -20%;">
+	  <div class="modal-content">
+
+		
+		<div class="modal-body text-center">
+            <button type="button" class="close display-inline-block" data-dismiss="modal" aria-label="Close" style="transform: scale(2,2);">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            <span class="" id="exampleModalLongTitle" style="font-size: xx-large;">Port Settings</span>
+          <p class="mt15">You are using port no: <span><b id="mynewport">{{myport}}</b></span></p>
+          <p class="mt15">If there is no port available then <i>Renew it</i></p>
+            <button id="renewPort" class="btn btn-lg" style="background-color: #dacb58; color:white;">
+                Renew</button>
+		</div>
+		
+	  </div>
+	</div>
+  </div>
+
+<style>
+.mt15{
+    margin-top: 15px;
+}
+#renewPort{
+    margin-top: 20px;
+}
+</style>
+
+<script src="{{ url_for('static', filename='js/new_layout/renew_port.js') }}"></script>

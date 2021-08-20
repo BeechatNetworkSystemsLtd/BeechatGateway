@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+
+<div id="chat_main_div">
+
+<div>
+    <h2 class="d-inline-block text-center mx-auto p-3">{{username}} 
+        <span id="ip">{{ip}}</span>:<span id="port">{{port}}</span></h2>
+    <span id="status"></span>
+</div>
+<span id="myip">{{myip}}</span>:<span id="myport">{{myport}}</span>
+<div class="msgbody" id="msgbody">
+    <ul id="new">
+        {% if messages %}
+            {% for message in messages %}
+                <li>{{message}}</li>
+            {% endfor %}
+        {% else %}
+        {% endif %}
+    </ul>
+</div>
+
+<div class="">
+<label class="btn btn-default btn-sm center-block btn-file border m-2">
+        <i class="fa fa-upload fa-2x" aria-hidden="true"></i>
+        <input type="file" style="display: none;">
+</label>
+<input type="text" name="sendMessage" id="message" class="align-middle">
+<button id="sendBtn" class="btn btn-warning mb-2">Send</button>
+</div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/conversation.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,22 @@
+<div class="display-block text-center" id="status-bar" style="display: none;">
+    <button id="delete_user" class="btn btn-danger btn-sm">Delete</button>
+    <input type="hidded" value="" id="delete_id">
+</div>
+
+
+<div class="content">
+    <div class="messages" >
+        <ul id="messages">
+        </ul>
+    </div>
+    <div class="message-input" style="display: none;">
+        <div class="wrap">
+        <input type="text" placeholder="Write your message..." />
+        <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
+        <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="{{ url_for('static', filename='js/new_layout/contents_sendMessage.js') }}"></script>

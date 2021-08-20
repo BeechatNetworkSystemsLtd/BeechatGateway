@@ -1,0 +1,35 @@
+  <link rel='stylesheet' href="{{ url_for('static', filename='css/fontawesome/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/nav_style.css') }}">
+<!-- partial:index.partial.html -->
+<nav class="sidebar-navigation display-block">
+	<ul>
+		<li class="mylist">
+			<a href="{{ url_for('main.home') }}"
+			style="color: white;">
+			<i class="fa fa-home" id="{{ home }}"></i></a>
+			<span class="tooltip">Home</span>
+		</li>
+
+		<!--   <li class="mylist">
+			<i class="fas fa-coins"></i>
+			<span class="tooltip">Register</span>
+		</li>
+		<li class="mylist">
+			<i class="fa fa-user-circle"></i>
+			<span class="tooltip">Login</span>
+		</li>
+		<li class="mylist">
+			<a href="{{ url_for('main.connect_to_client') }}"><i class="fas fa-comments"></i></a>
+			<span class="tooltip">Conversations</span>
+		</li>  -->
+
+		<li class="mylist">
+			<a href="{{ url_for('main.settings') }}"
+			style="color: white;">
+			<i class="fas fa-cog" id="{{ settings }}"></i></a>
+			<span class="tooltip">Settings</span>
+		</li>
+	</ul>
+</nav>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

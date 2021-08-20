@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
+<div id="main">
+
+<div class="button">
+    <!-- plus button -->
+        <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" id="plus">
+        +
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Connect to client</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <form method="POST">
+            <div class="modal-body">
+                
+                <table class="table text-center table-dark">
+                    <tr>
+                        <td>ip: </td>
+                        <td><input type="text" name="ip" id="ip" placeholder="111.555.888.04"></td>
+                    </tr>
+                    <tr>
+                        <td>port: </td>
+                        <td><input type="text" name="port" id="port" placeholder="80"></td>
+                    </tr>
+                </table>
+
+                
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" id="connectbtn" 
+            formaction="{{ url_for('conversation.connect') }}">
+                Connect Now</button>
+            </div>
+        </form>
+        </div>
+        </div>
+    </div>
+</div>
+<span id="myhost">{{host}}</span><span id="myport">{{port}}</span>
+<!-- users chat list -->
+<div id="chat-div" class="col-md-7 col-sm-7 col-lg-8">
+    
+    <table class="table table-sm table-striped">
+        {% for user in users %}
+            <tr>
+                <td class="img-box"><img src="{{ url_for('static', filename='images/') }}{{ user.profile_image }}" 
+                    alt="" class="profile-image">
+                </td>
+                <td class="align-middle">
+                    <p><b><a href="{{ url_for('main.chat', id=user.id) }}">
+                 {% if user.username %}
+                    {{ user.username }}
+                {% else %}
+                    {{ user.ip }}:{{ user.port }}
+                {% endif %}
+                </a></b></p>
+                </td>
+                <td class="align-middle date-box">{{ user.last_seen.strftime('%A-%m-%Y') }}</td>
+                <td><a href="{{ url_for('conversation.delete_user', id=user.id) }}" class="btn btn-danger">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+
+</div>
+
+<script src="{{ url_for('static', filename='js/ajax/index.js') }}"></script>
+{% endblock body %}

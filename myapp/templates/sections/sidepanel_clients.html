@@ -1,0 +1,42 @@
+<div id="sidepanel">
+    <div id="profile">
+        <div class="wrap">
+            <span style="font-size: x-large;">Chats</span> 
+            <button style="background: #dacb58; color: white;"
+            class="btn float-right font-weight-bold" data-toggle="modal" data-target="#connectModal">+ Add</button>
+        </div>
+    </div>
+
+    <div id="contacts">
+        
+        <ul>
+            {% for user in users %}
+            <li class="contact user_{{user.id}}" onclick="loadMessages({{user.id}});">
+                <div class="wrap">
+                    <span class="contact-status d-none"></span>
+                    <!-- <span class="contact-status"></span> -->
+                    <img src="{{ url_for('static', filename='images/') }}{{ user.profile_image }}" alt="user profile pic" />
+                    <div class="meta">
+                        <p class="name">
+                            {% if user.username %}
+                            {{ user.username }}
+                            {% else %}
+                                {{ user.ip }}:{{ user.port }}
+                            {% endif %}
+                        </p>
+                        <p class="preview">
+                            {% if user.user_messages %}
+                            {{ user.user_messages[-1].message }}</p>
+                            {% endif %}
+                    </div>
+                    
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!-- This script will load message from sidepanel client to messages list -->
+<script src="{{ url_for('static', filename='js/new_layout/sidepanel_clients.js') }}"></script>
+
