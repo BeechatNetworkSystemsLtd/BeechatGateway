@@ -289,6 +289,8 @@ def start_server():
                 #Process CHACHADATA
                 chachadata = messagelist[chachacounter+1]
                 #print("CHACHA Data:"+str(chachadata))
+                chachadata = chachadata.replace('\\"',"\"")
+                chachadata = chachadata[1:-1]
                 b64 = json.loads(chachadata)
                 nonce = b64decode(b64['nonce'])
                 ciphertext = b64decode(b64['ciphertext'])
