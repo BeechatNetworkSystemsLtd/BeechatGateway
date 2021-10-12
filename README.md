@@ -13,9 +13,10 @@ This is a simple to use, Python-based TCP socket chat utilising Kyber-Py encrypt
 
 How to run the program
 -------------------
-1) Install Python 3 (Version 3.9.5) on your computer.
+1) Install Python 3 (Version 3.9.5) and Pip on your computer.
 2) Download this repository and extract into a folder of your choice.
-3) Open Terminal/Command line within that folder and type ```pip install -r requirements.txt```.
+3) For Linux go to 3a, for Windows, go to 3b: 
+3a) On Debian/Ubuntu Linux distributions, open Terminal within that folder and type ```./install.sh``` then press ```[ENTER]```. The script will (1) prompt to install ```unzip``` (2) unzip ```main/static.zip``` (3) install python packages.
 4) After the packages have installed, you are ready to run the program. To run it type ```python3 main.py```.
 5) Go to your web browser and type the address listed in the Terminal, it should be ```127.0.0.1:5000```.
 
@@ -36,12 +37,8 @@ Features
 
 Connection Issues
 -------------------
-Some users might be encountering problems with connecting to other users and getting a ```111 connection refused``` error message in the Terminal. This is due to port forwarding and firewalls. Please open the port you are using via your router and your PC's firewall settings. Alternatively, some VPNs allow you to forward your port regardless of the router, directly through the VPN. This is a good solution to at the same time protect your IP from others and open your port no matter which router you are connected to.
+Some users might be encountering problems with connecting to other users and getting a ```111 connection refused``` error message in the Terminal. This is due to port forwarding and firewalls. Please open the port you are using via your router and your PC's firewall settings. 
 
-
-Building the software
--------------------
-When cloning the repository, please make sure to unzip the static.zip folder which containts the Fontaswesome library.
 
 Product Versions
 -------------------
