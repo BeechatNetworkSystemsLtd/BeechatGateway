@@ -24,7 +24,10 @@ if lokiAddress == "":
 def connect_to_bootstrap_node():
     loop = asyncio.get_event_loop()
     loop.set_debug(True)
-
+    try: 
+        loop.run_until_complete(server.save_state_regularly("DHT.dat",60))
+    except: 
+        pass
     loop.run_until_complete(server.listen(8469, lokiAddress))
     bootstrap_node = ("rgnbbdskjzjf9789uiseq68jofudtpwwgsqqwtdzbyxsyq84tamo.loki", 8468)
     loop.run_until_complete(server.bootstrap([bootstrap_node]))
@@ -39,7 +42,11 @@ def connect_to_bootstrap_node():
 
 
 def main():
-    
+    try:
+        server.load_state("DHT.dat")
+    except:
+        pass
+
     connect_to_bootstrap_node()
     #else:
     #    create_bootstrap_node()
