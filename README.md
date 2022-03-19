@@ -1,29 +1,37 @@
 # Beechat Gateway
-## _Internet-based P2P chat utilising post quantum cryptography_
+## _Digimesh-Lokinet bridge based on Kademlia to allow connections between mesh islands_
 
 ![BNSLTD](https://beechat.network/wp-content/uploads/2021/02/powered-by-1.png)
 
 ## Introduction
 
-This is a simple to use, Python-based TCP socket chat utilising Kyber-Py encryption. The goal is to create a peer-to-peer chat utilising post-quantum cryptography with no third party or rendezvous server (ie: fully decentralised). The chat uses a Flask server to provide a WSGI intuitive user interface. Currently, users can utilise the project as a P2P chat, however the goal is to use this project as an Internet gateway for the Beechat Network in order to connect far away nodes.
+Beechat Gateway is a Python-based app users can access via their browsers, to set up a Beechat Gateway for themselves, and the local community. Setting up a Gateway allows users to communicate with other users that are in a different radio network. This allows people without Internet to communicate with each other accross vast distances and continents, in this case, only Gateways need Internet access, but not the end-user.
 
-## Download
+ Requirements
+ -------------------
+
+ 1) Linux computer, such as a Raspberry Pi 4 with a weather proof enclosure
+ 2) Clip board with an antenna connected to the RPi
+ 3) (Optional) Solar panel for the RPi and battery to make the system self-sufficient
+ 
+
+## Download & Install
 -------------------
 
-
-How to run the program
--------------------
-1) Install Python 3 (Version 3.9.5) and Pip on your computer.
+1) Install the latest Python 3 (Version 3.9.5) and Pip on the computer.
 2) Download this repository and extract into a folder of your choice.
-3) For Linux go to 3a, for Windows, go to 3b: 
-3a) On Debian/Ubuntu Linux distributions, open Terminal within that folder and type ```./install.sh``` then press ```[ENTER]```. The script will (1) prompt to install ```unzip``` (2) unzip ```main/static.zip``` (3) install python packages.
-4) After the packages have installed, you are ready to run the program. To run it type ```python3 main.py```.
+3) Open Terminal within that folder and type:
+   * ```./install.sh``` then press ```[ENTER]```. 
+   * The script will ask to install ```unzip```, press [ENTER] then wait for it to install
+   * The script will ask to install ```lokinet```, press [ENTER], then wait for it to install and run
+   * Then type ```unzip main/static.zip```
+4) After the packages have installed, you are ready to run the program. To run it type ```python3 main.py``` in the main folder.
 5) Go to your web browser and type the address listed in the Terminal, it should be ```127.0.0.1:5000```.
 
 Repository Contents
 -------------------
 
-* **/main.py** - Main file to run the server/client
+* **/main.py** - Main file to run the Gateway
 * **/myapp** - Folder containing the project files
 
 Features
@@ -35,15 +43,10 @@ Features
 * **File sending:** (in progress)
 
 
-Connection Issues
--------------------
-Some users might be encountering problems with connecting to other users and getting a ```111 connection refused``` error message in the Terminal. This is due to port forwarding and firewalls. Please open the port you are using via your router and your PC's firewall settings. 
-
-
-Product Versions
+Versions
 -------------------
 
-REV1.0 - first design revision
+REV1.0 - first revision
 
 
 License Information
@@ -56,4 +59,5 @@ Distributed as-is; no warranty is given.
 Suggestions? Corrections? Pull requests?
 -------------------
 If you have improvements to Beechat Gateway, send us your pull requests!
+
 

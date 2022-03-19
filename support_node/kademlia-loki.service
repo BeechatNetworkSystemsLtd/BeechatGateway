@@ -1,0 +1,11 @@
+[Unit]
+Description="Kademlia support node running over Lokinet"
+
+[Service]
+User=root
+WorkingDirectory=/root/kademlia-master/examples/
+ExecStart=python3 node.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
