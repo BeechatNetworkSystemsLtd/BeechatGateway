@@ -25,7 +25,6 @@ Beechat Gateway is a Python-based app users can access via their browsers, to se
    * The script will ask to install ```python3``` and ```pip```, press [ENTER], then wait for it to install and run
    * The script will ask to install ```lokinet```, press [ENTER], then wait for it to install and run
 4) After the packages have installed, you are ready to run the program. To run it type ```python3 main.py``` in the main folder.
-5) Go to your web browser and type the address listed in the Terminal, it should be ```127.0.0.1:5000```.
 
 Repository Contents
 -------------------
@@ -35,12 +34,10 @@ Repository Contents
 * **/support_node** - Folder containing node.py and systemd unit file to connect to the Beechat Kademlia test network
 * **/bootstrap_node** - Folder containing node.py and systemd unit file to set up your own Kademlia network
 
-Features
+Planned features
 -------------------
-
-* **Retrieve Beechat address information:** Switch between different Kyber keypairs within the application
-* **Lokinet addressing:** Store all your conversations in a .db file for easy transport
-* **Beechat protocol over Digimesh:** Assign a random port to the application, or set it on your own manually
+* **Store & retrieve Beechat address information:** Publish your Beechat address and public key, to establish long distance comm-links
+* **Store & retrieve Beechat messages:** Send messages over Kademlia-Lokinet to a Gateway, that Gateway will then send the message via Digimesh to the intended user
 
 
 Versions
