@@ -13,46 +13,22 @@ log.addHandler(handler)
 log.setLevel(logging.DEBUG)
 
 server = Server()
-#server.saveStateRegularly('DHT.dat')
 # Get Computer Loki Address
-lokiAddress = subprocess.getoutput("host -t cname localhost.loki 127.3.2.1 | grep localhost.loki | awk '{print substr($0,length($0)-57,57)}'")
+lokiAddress = subprocess.getoutput("dig @127.3.2.1 -t cname +short localhost.loki")
 print(lokiAddress)
 # Exit if Lokinet isn't running
 if lokiAddress == "":
     print("Please start Lokinet.")
     exit()
 
-def parse_arguments():
-    parser = argparse.ArgumentParser()
-
-    # Optional arguments
-    parser.add_argument("-i", "--ip", help="IP address of existing node", type=str)#, default=lokiAddress)
-    parser.add_argument("-p", "--port", help="port number of existing node", type=int, default=8468)
-
-    return parser.parse_args()
-
-
-def connect_to_bootstrap_node(args):
-    loop = asyncio.get_event_loop()
-    loop.set_debug(True)
-
-    loop.run_until_complete(server.listen(8469, lokiAddress))
-    bootstrap_node = (args.ip, int(args.port))
-    loop.run_until_complete(server.bootstrap([bootstrap_node]))
-
-    try:
-        loop.run_forever()
-    except KeyboardInterrupt:
-        pass
-    finally:
-        server.stop()
-        loop.close()
-
 
 def create_bootstrap_node():
     loop = asyncio.get_event_loop()
     loop.set_debug(True)
-
+    try: 
+        loop.run_until_complete(server.save_state_regularly("DHT.dat",60))
+    except: 
+        pass
     loop.run_until_complete(server.listen(8468, lokiAddress))
 
     try:
@@ -65,12 +41,12 @@ def create_bootstrap_node():
 
 
 def main():
-    args = parse_arguments()
+    try:
+        server.load_state("DHT.dat")
+    except:
+        print("Creating new network")
 
-    if args.ip and args.port:
-        connect_to_bootstrap_node(args)
-    else:
-        create_bootstrap_node()
+    create_bootstrap_node()
 
 
 if __name__ == "__main__":
