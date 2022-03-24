@@ -89,20 +89,22 @@ def runDigimeshServer():
         nonce = random.getrandbits(16)
         i = 0
         global lokiAddr_and_nonce
-        lokiAddr_and_nonce = str(lokiAddress + ";" + str(nonce)+"_E")
+        lokiAddr_and_nonce = str(lokiAddress + ";" + str(nonce))
         if device is not None and device.is_open():
             device.close()
         device.open()
+        device.send_data_broadcast("==BEGIN-GATEWAY-BROADCAST==")
         while(i<len(lokiAddr_and_nonce)):
-            device.send_data_broadcast("L_" + lokiAddr_and_nonce[i:i+61])
+            device.send_data_broadcast(lokiAddr_and_nonce[i:i+61])
             i = i + 61
+        device.send_data_broadcast("==END-GATEWAY-BROADCAST==")
         device.close()
         print("#t1: Broadcast done")
         
 
 
-lokiAddress = subprocess.getoutput("dig @127.3.2.1 -t cname +short localhost.loki")
-#lokiAddress = "TESTLOKIADDRESS.loki"
+#lokiAddress = subprocess.getoutput("dig @127.3.2.1 -t cname +short localhost.loki")
+lokiAddress = "TESTLOKIADDRESSTESTLOKIADDRESSTESTLOKIADDRESSTESTLOKIADDRESSTESTLOKIADDRESSTESTLOKIADDRESS.loki"
 
 
 Digi_t1 = threading.Thread(target=runDigimeshServer)

@@ -27,6 +27,7 @@ def runDigimeshServer():
     global runDigimesh
 
     def listener():
+        receivedLokiAddr_and_nonce = ""
         def returnBroadcast(remote_device, lokiAddr_and_nonce):
             global keys
             print("Sending your Beechat address, pubkey and signed lokinet address + nonce...")
@@ -55,27 +56,38 @@ def runDigimeshServer():
             
 
         global received_xbee_message
+        lokiAddr_Bool = False
         while var:
             global device
             global received_messages_list
 
             print("Waiting for LokiAddr + nonce...\n")
             while var:
+                
+                
                 xbee_message = device.read_data()
                 if xbee_message is not None:
+
                     print("From %s >> %s" % (xbee_message.remote_device.get_64bit_addr(),
                                             xbee_message.data.decode()))
                     print("ADDR: "+ str(xbee_message.remote_device.get_64bit_addr()))
                     print("DATA: "+ xbee_message.data.decode())
                     received_xbee_message = (xbee_message.remote_device.get_64bit_addr(),xbee_message.data.decode())
-                    if(received_xbee_message[1].startswith("L_")):
-                        print("received lokiAddr packet")
-                        received_messages_list.append(received_xbee_message[1][2:])
-                        print(received_xbee_message[1][2:])
-                        print("added lokiAddr packet to list\n")
-                    if(received_xbee_message[1].endswith("_E")):
-                        #Sends back signed lokiaddress + nonce
-                        returnBroadcast(received_xbee_message[0],received_xbee_message[1][2:])
+                    
+                    if(received_xbee_message[1].startswith("==END-GATEWAY-BROADCAST==")):
+                        lokiAddr_Bool = False
+                        print("Final LOKIADDR+NONCE:"+receivedLokiAddr_and_nonce)
+                        device.flush_queues()
+                        time.sleep(5)
+                        returnBroadcast(received_xbee_message[0],receivedLokiAddr_and_nonce)
+
+                    if(lokiAddr_Bool == True):
+                        receivedLokiAddr_and_nonce += received_xbee_message[1]
+                        print("Current: "+ receivedLokiAddr_and_nonce)
+
+                    if(received_xbee_message[1] == "==BEGIN-GATEWAY-BROADCAST=="):
+                        lokiAddr_Bool = True
+                        print("Received Gateway broadcast")
                 
     while runDigimesh:
         global device
@@ -105,4 +117,4 @@ time.sleep(240)
 runDigimesh = False
 Digi_t1.join()
 print("#t0: Digimesh Server ended")
-print("#t0: Total broadcasts: "+ str(i))
+#print("#t0: Total broadcasts: "+ str(i))
